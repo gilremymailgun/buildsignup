@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create your Build account with your Sinch ID</title>
+<title>Create your Build account with your Sinch ID (V3)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
@@ -34,6 +34,13 @@ body{
   flex-direction:column;
   -webkit-font-smoothing:antialiased;
 }
+.start-over{
+  position:absolute;top:0;right:0;padding:24px 40px;
+  font-size:16px;line-height:24px;font-weight:700;color:var(--link);text-decoration:none;
+}
+.start-over:hover{text-decoration:underline}
+@media (max-width:480px){.start-over{padding:16px 20px}}
+
 main{flex:1;display:flex;justify-content:center;padding:120px 20px 24px}
 .form{width:100%;max-width:325px;display:flex;flex-direction:column;gap:24px}
 .top{display:flex;flex-direction:column;gap:16px}
@@ -52,19 +59,9 @@ h1{margin:0;font-size:24px;line-height:30px;font-weight:400;letter-spacing:.18px
   display:flex;align-items:center;justify-content:center;
   font-size:16px;line-height:24px;font-weight:700;letter-spacing:-.02em;
 }
-.badge{
-  position:absolute;right:-7px;bottom:-7px;width:20px;height:20px;border-radius:5px;
-  box-shadow:0 0 0 1.5px #fff;overflow:hidden;
-}
-.badge svg{display:block;width:20px;height:20px}
 .id-text{min-width:0;display:flex;flex-direction:column}
 .id-label{font-size:12px;line-height:20px;font-weight:400;color:var(--label)}
 .id-email{font-size:14px;line-height:22px;font-weight:700;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.alt-link{
-  align-self:flex-end;font-family:inherit;font-size:14px;line-height:22px;font-weight:500;letter-spacing:-.02em;
-  color:var(--link);background:none;border:0;padding:0;cursor:pointer;text-align:right;
-}
-.alt-link:hover{text-decoration:underline}
 
 .confirm{display:flex;flex-direction:column;gap:8px}
 .check{display:flex;align-items:flex-start;gap:8px;cursor:pointer}
@@ -96,16 +93,18 @@ h1{margin:0;font-size:24px;line-height:30px;font-weight:400;letter-spacing:.18px
 .accounts h2{margin:0;font-size:14px;line-height:22px;font-weight:500;color:var(--text)}
 .accounts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
 .acc{
-  display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:8px;
   padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;
 }
+.tile{flex:none;display:block;width:40px;height:40px}
 .acc-text{flex:1;min-width:0;display:flex;flex-direction:column}
 .acc-name{font-size:14px;line-height:22px;font-weight:700;color:var(--ink)}
 .acc-email{font-size:12px;line-height:20px;font-weight:400;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acc-btn{
-  flex:none;height:32px;padding:0 16px;border:0;border-radius:4px;background:transparent;
+  flex:none;height:32px;padding:0 4px;display:inline-flex;align-items:center;gap:4px;border:0;border-radius:4px;background:transparent;
   font-family:inherit;font-size:14px;line-height:22px;font-weight:700;color:var(--link);cursor:pointer;transition:background .15s;
 }
+.acc-btn .arr{width:14px;height:14px}
 .acc-btn:hover{background:#E6F1FA}
 
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
@@ -160,6 +159,8 @@ html[data-accounts="engage"] #acc-mailgun{display:none}
 <g id="tile-mailgun"><path d="M0 9.6C0 4.29846 4.29846 0 9.6 0H38.4C43.7015 0 48 4.29846 48 9.6V38.4C48 43.7015 43.7015 48 38.4 48H9.6C4.29846 48 0 43.7015 0 38.4V9.6Z" fill="#F04126"/><path d="M41.388 20.9724C40.56 19.7954 39.4071 18.9129 38.0561 18.4234C37.1872 18.0985 36.2764 17.9381 35.3488 17.9476C33.7337 17.958 32.0211 18.4643 30.3997 19.4128L15.9872 27.85C13.7443 29.1622 12.0767 28.9862 11.0674 28.6047C10.3264 28.3405 9.69651 27.8616 9.24268 27.2212C8.7878 26.5797 8.54464 25.8261 8.5415 25.0411C8.53731 24.255 8.76999 23.4983 9.21753 22.8527C9.66402 22.206 10.2897 21.7207 11.0318 21.4451C12.0317 21.0541 13.6961 20.8581 15.9537 22.1421L17.5772 23.0707C17.4829 23.3966 17.4126 23.732 17.3686 24.0674L17.2848 24.7026L29.5801 17.6048L29.6052 17.5891C29.9343 17.3564 30.1618 17.0105 30.2467 16.6175C30.3315 16.2234 30.2666 15.8147 30.0622 15.4677C29.8589 15.1208 29.5339 14.864 29.1472 14.7456C28.7615 14.6272 28.3496 14.6576 27.9859 14.8315L27.9744 14.8368L23.9947 17.1479L19.9407 14.8294L19.9176 14.8179C19.5497 14.646 19.1347 14.6198 18.749 14.7435C18.3633 14.8672 18.0405 15.1292 17.8403 15.4824C17.6401 15.8356 17.5814 16.2475 17.6757 16.6416C17.769 17.0357 18.0059 17.3784 18.3423 17.6048L20.8158 19.0061L20.4762 19.2063L20.4689 19.2105C19.9878 19.5155 19.5476 19.8803 19.1577 20.2943L17.5342 19.3583C14.9171 17.8679 12.191 17.5482 9.86001 18.459C8.88842 18.8342 7.99439 19.4306 7.27539 20.1853C6.55639 20.9388 6.00195 21.8601 5.67284 22.8516C5.11525 24.5894 5.24731 26.4498 6.04806 28.09C6.84881 29.7303 8.23336 30.9807 9.94491 31.6096C10.8148 31.9345 11.7277 32.0948 12.6532 32.0854C14.2673 32.0749 15.9788 31.5676 17.6023 30.6181L17.6275 30.6023L32.0075 22.1819C34.2494 20.8707 35.9179 21.0468 36.9294 21.4273C37.6693 21.6903 38.3003 22.1672 38.7551 22.8076C39.209 23.449 39.449 24.2037 39.4511 24.9898C39.4521 25.4038 39.3892 25.8146 39.2656 26.2035C39.0832 26.7422 38.7793 27.2442 38.3841 27.653C37.99 28.0628 37.5006 28.3867 36.9671 28.59C35.9672 28.9799 34.3007 29.1748 32.0431 27.8919L30.4196 26.9633C30.5233 26.607 30.5967 26.2422 30.6407 25.8754L30.7162 25.2455L21.1397 30.8528V34.5589L27.5226 30.8319L27.5331 30.8256C28.0121 30.5206 28.4523 30.1559 28.8411 29.7419L30.4657 30.6778C33.0933 32.163 35.8194 32.4816 38.1368 31.5771C39.4846 31.0708 40.626 30.1758 41.4404 28.9883C42.2537 27.8018 42.6771 26.4131 42.6646 24.9751H42.6667C42.6583 23.5339 42.2181 22.1504 41.3901 20.9734L41.388 20.9724Z" fill="#fff"/></g>
 </defs></svg>
 
+<a class="start-over" href="#" data-toast="Prototype: this would restart the sign-up flow.">Start over</a>
+
 <main>
   <div class="form">
     <svg class="logo" width="143" height="32" viewBox="0 0 215 48" role="img" aria-label="Sinch Build"><use href="#logo-build"/></svg>
@@ -175,7 +176,6 @@ html[data-accounts="engage"] #acc-mailgun{display:none}
             <span class="id-email">alex.morgan@company.com</span>
           </div>
         </div>
-        <button type="button" class="alt-link" data-toast="Prototype: this would sign you out so you can use a different email.">Use a different email</button>
       </div>
 
       <div class="confirm">
@@ -193,23 +193,23 @@ html[data-accounts="engage"] #acc-mailgun{display:none}
     <hr class="divider" id="accounts-divider">
 
     <section class="accounts" id="accounts" aria-labelledby="accounts-title">
-      <h2 id="accounts-title">Log in to an existing Sinch account</h2>
+      <h2 id="accounts-title">Log in to your existing Sinch account instead?</h2>
       <ul>
         <li class="acc" id="acc-engage">
-          <div class="avatar" aria-hidden="true">AM<span class="badge"><svg viewBox="0 0 48 48"><use href="#tile-engage"/></svg></span></div>
+          <svg class="tile" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#tile-engage"/></svg>
           <div class="acc-text">
             <span class="acc-name">Sinch Engage</span>
             <span class="acc-email">alex.morgan@company.com</span>
           </div>
-          <button type="button" class="acc-btn" aria-label="Log in to Sinch Engage" data-toast="Prototype: this would open the Sinch Engage login.">Log in</button>
+          <button type="button" class="acc-btn" aria-label="Log in to Sinch Engage" data-toast="Prototype: this would open the Sinch Engage login.">Log in <svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </li>
         <li class="acc" id="acc-mailgun">
-          <div class="avatar" aria-hidden="true">AM<span class="badge"><svg viewBox="0 0 48 48"><use href="#tile-mailgun"/></svg></span></div>
+          <svg class="tile" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#tile-mailgun"/></svg>
           <div class="acc-text">
             <span class="acc-name">Sinch Mailgun</span>
             <span class="acc-email">alex.morgan@company.com</span>
           </div>
-          <button type="button" class="acc-btn" aria-label="Log in to Sinch Mailgun" data-toast="Prototype: this would open the Sinch Mailgun login.">Log in</button>
+          <button type="button" class="acc-btn" aria-label="Log in to Sinch Mailgun" data-toast="Prototype: this would open the Sinch Mailgun login.">Log in <svg class="arr" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </li>
       </ul>
     </section>
@@ -235,7 +235,7 @@ html[data-accounts="engage"] #acc-mailgun{display:none}
   }
 
   document.querySelectorAll('[data-toast]').forEach(function (el) {
-    el.addEventListener('click', function () { showToast(el.getAttribute('data-toast')); });
+    el.addEventListener('click', function (e) { e.preventDefault(); showToast(el.getAttribute('data-toast')); });
   });
 
   var box = document.getElementById('confirm');
