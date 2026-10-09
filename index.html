@@ -121,12 +121,9 @@ footer.site a:hover{text-decoration:underline}
 
 
 /* Scenario switch: ?accounts=none | engage | both (default: both) */
-.t-one{display:none}
 html[data-accounts="none"] #accounts-divider,
 html[data-accounts="none"] #accounts{display:none}
 html[data-accounts="engage"] #acc-mailgun{display:none}
-html[data-accounts="engage"] .t-many{display:none}
-html[data-accounts="engage"] .t-one{display:inline}
 
 .toast{
   position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);
@@ -198,7 +195,7 @@ html[data-accounts="engage"] .t-one{display:inline}
     <hr class="divider" id="accounts-divider">
 
     <section class="accounts" id="accounts" aria-labelledby="accounts-title">
-      <h2 id="accounts-title"><span class="t-many">You have existing accounts with this Sinch&nbsp;ID</span><span class="t-one">You have an existing account with this Sinch&nbsp;ID</span></h2>
+      <h2 id="accounts-title">Log in to an existing Sinch account</h2>
       <ul>
         <li class="acc" id="acc-engage">
           <div class="avatar" aria-hidden="true">AM<span class="badge"><svg viewBox="0 0 48 48"><use href="#tile-engage"/></svg></span></div>
