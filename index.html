@@ -11,18 +11,19 @@
 :root{
   --ink:#1A2126;
   --text:#242424;
+  --label:#4B575E;
+  --checkbox-text:#272F36;
   --muted:#626C73;
   --link:#0A5D9A;
   --primary:#1860F0;
   --primary-hover:#124FCB;
   --line:#B7C1C7;
-  --divider:#D3D9DD;
   --card-bg:#F7F9FA;
   --avatar:#DCE2E5;
   --danger:#B3261E;
   --font:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
-*{box-sizing:border-box}
+*{box-sizing:border-box;font-optical-sizing:none;font-variation-settings:"opsz" 14}
 html,body{margin:0;padding:0}
 body{
   font-family:var(--font);
@@ -33,17 +34,13 @@ body{
   flex-direction:column;
   -webkit-font-smoothing:antialiased;
 }
-main{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  padding:64px 20px 24px;
-}
+main{flex:1;display:flex;justify-content:center;padding:120px 20px 24px}
 .form{width:100%;max-width:325px;display:flex;flex-direction:column;gap:24px}
-.head{display:flex;flex-direction:column;gap:16px}
-.logo{display:block;height:44px;width:auto}
-h1{margin:0;font-size:24px;line-height:1.25;font-weight:400;color:var(--ink)}
-.sub{margin:0;font-size:16px;line-height:24px;color:var(--text)}
+.top{display:flex;flex-direction:column;gap:16px}
+
+.logo{display:block;align-self:flex-start;width:215px;max-width:100%;height:auto}
+h1{margin:0;font-size:24px;line-height:24px;font-weight:400;letter-spacing:.18px;color:var(--ink)}
+.sub{margin:0;font-size:16px;line-height:20px;font-weight:400;letter-spacing:.25px;color:var(--text)}
 
 .id-wrap{display:flex;flex-direction:column;gap:8px}
 .id-card{
@@ -54,44 +51,50 @@ h1{margin:0;font-size:24px;line-height:1.25;font-weight:400;color:var(--ink)}
   position:relative;flex:none;width:40px;height:40px;border-radius:50%;
   background:var(--avatar);color:var(--muted);
   display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;
+  font-size:16px;line-height:24px;font-weight:700;letter-spacing:-.02em;
 }
 .badge{
   position:absolute;right:-7px;bottom:-7px;width:20px;height:20px;border-radius:5px;
-  box-shadow:0 0 0 1.5px #fff;background:#fff;overflow:hidden;
+  box-shadow:0 0 0 1.5px #fff;overflow:hidden;
 }
 .badge svg{display:block;width:20px;height:20px}
 .id-text{min-width:0;display:flex;flex-direction:column}
-.id-label{font-size:12px;line-height:20px;color:var(--muted)}
+.id-label{font-size:12px;line-height:20px;font-weight:400;color:var(--label)}
 .id-email{font-size:14px;line-height:22px;font-weight:700;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .alt-link{
-  align-self:flex-end;font:inherit;font-size:14px;line-height:22px;font-weight:500;color:var(--link);
-  background:none;border:0;padding:0;cursor:pointer;text-decoration:none;
+  align-self:flex-end;font-family:inherit;font-size:14px;line-height:22px;font-weight:500;letter-spacing:-.02em;
+  color:var(--link);background:none;border:0;padding:0;cursor:pointer;text-align:right;
 }
 .alt-link:hover{text-decoration:underline}
 
+.confirm{display:flex;flex-direction:column;gap:8px}
 .check{display:flex;align-items:flex-start;gap:8px;cursor:pointer}
 .check input{
-  flex:none;width:18px;height:18px;margin:2px 0 0;accent-color:var(--primary);cursor:pointer;
+  -webkit-appearance:none;appearance:none;flex:none;width:16px;height:16px;margin:2px 0 0;
+  border:1px solid var(--muted);border-radius:4px;background:#fff;cursor:pointer;
 }
-.check span{font-size:14px;line-height:22px;color:var(--ink)}
-.error{margin:-16px 0 0;font-size:14px;line-height:20px;color:var(--danger)}
-.error[hidden]{display:none}
+.check input:checked{
+  border-color:var(--primary);
+  background:var(--primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.4 2.4 4.6-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat;
+}
+.check span{font-size:14px;line-height:20px;font-weight:400;color:var(--checkbox-text)}
+.check input[aria-invalid="true"]{border-color:var(--danger);box-shadow:0 0 0 1px var(--danger)}
 
 .cta{
-  width:100%;height:50px;border:0;border-radius:8px;background:var(--primary);color:#fff;
-  font:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:background .15s;
+  width:100%;height:50px;padding:13px 25px;border:0;border-radius:8px;background:var(--primary);color:#fff;
+  font-family:inherit;font-size:16px;line-height:24px;font-weight:700;cursor:pointer;
+  box-shadow:0 1px 2px rgba(0,0,0,.05);transition:background .15s;
 }
 .cta:hover{background:var(--primary-hover)}
 
-.legal{margin:-8px 0 0;font-size:12px;line-height:18px;color:var(--muted)}
+.legal{margin:0;font-size:14px;line-height:22px;font-weight:400;letter-spacing:-.02em;color:var(--muted)}
 .legal a{color:var(--link);text-decoration:none}
 .legal a:hover{text-decoration:underline}
 
-.divider{border:0;border-top:1px solid var(--divider);margin:0}
+.divider{border:0;border-top:1px solid var(--line);margin:0;height:0}
 
 .accounts{display:flex;flex-direction:column;gap:16px}
-.accounts h2{margin:0;font-size:14px;line-height:22px;font-weight:700;color:var(--text)}
+.accounts h2{margin:0;font-size:14px;line-height:22px;font-weight:400;color:var(--text)}
 .accounts ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
 .acc{
   display:flex;align-items:center;gap:12px;
@@ -99,37 +102,34 @@ h1{margin:0;font-size:24px;line-height:1.25;font-weight:400;color:var(--ink)}
 }
 .acc-text{flex:1;min-width:0;display:flex;flex-direction:column}
 .acc-name{font-size:14px;line-height:22px;font-weight:700;color:var(--ink)}
-.acc-email{font-size:12px;line-height:20px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-email{font-size:12px;line-height:20px;font-weight:400;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .acc-btn{
-  flex:none;height:32px;padding:0 12px;border:0;border-radius:4px;background:transparent;
-  font:inherit;font-size:14px;font-weight:700;color:var(--link);cursor:pointer;transition:background .15s;
+  flex:none;height:32px;padding:0 16px;border:0;border-radius:4px;background:transparent;
+  font-family:inherit;font-size:14px;line-height:22px;font-weight:700;color:var(--link);cursor:pointer;transition:background .15s;
 }
 .acc-btn:hover{background:#E6F1FA}
 
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:4px}
 
 footer.site{
-  display:flex;justify-content:center;align-items:center;gap:6px;
-  padding:16px 20px 24px;font-size:14px;color:var(--ink);
+  display:flex;justify-content:center;align-items:center;gap:4px;
+  padding:24px 10px 10px;font-size:16px;line-height:24px;color:var(--ink);
 }
-footer.site a{color:var(--ink);text-decoration:none}
+footer.site .reg{font-variation-settings:"opsz" 9;font-weight:400}
+footer.site a{color:var(--link);font-weight:700;text-decoration:none}
 footer.site a:hover{text-decoration:underline}
 
-.proto{
-  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 12px;
-  padding:12px 20px;border-top:1px solid var(--divider);background:#FAFBFC;
-  font-size:12px;color:var(--muted);
-}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
-.seg button{
-  font:inherit;font-size:12px;color:var(--ink);background:#fff;border:0;border-right:1px solid var(--line);
-  padding:6px 12px;cursor:pointer;
-}
-.seg button:last-child{border-right:0}
-.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+/* Scenario switch: ?accounts=none | engage | both (default: both) */
+.t-one{display:none}
+html[data-accounts="none"] #accounts-divider,
+html[data-accounts="none"] #accounts{display:none}
+html[data-accounts="engage"] #acc-mailgun{display:none}
+html[data-accounts="engage"] .t-many{display:none}
+html[data-accounts="engage"] .t-one{display:inline}
 
 .toast{
-  position:fixed;left:50%;bottom:76px;transform:translateX(-50%) translateY(8px);
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);
   background:var(--ink);color:#fff;font-size:14px;line-height:20px;padding:10px 16px;border-radius:8px;
   opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:calc(100% - 40px);text-align:center;
 }
@@ -142,39 +142,54 @@ footer.site a:hover{text-decoration:underline}
   *{transition:none!important}
 }
 </style>
+<script>
+(function () {
+  var raw = (new URLSearchParams(window.location.search).get('accounts') || '').toLowerCase().trim();
+  var map = {
+    'none': 'none',
+    'engage': 'engage',
+    'both': 'both',
+    'engage,mailgun': 'both',
+    'engage mailgun': 'both'
+  };
+  document.documentElement.setAttribute('data-accounts', map[raw] || 'both');
+})();
+</script>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<g id="logo-build"><path d="M120.705 41.4257C115.995 41.4257 112.413 37.6835 112.413 32.8817C112.413 28.0798 115.995 24.3377 120.705 24.3377C122.927 24.3377 124.818 25.1987 126.045 26.6889V18.2443H129.727V41.0945H126.211V38.9088C125.017 40.4984 123.027 41.4257 120.705 41.4257ZM121.103 37.9485C123.989 37.9485 126.078 35.829 126.078 32.8817C126.078 29.9343 123.989 27.7818 121.103 27.7818C118.217 27.7818 116.094 29.9343 116.094 32.8817C116.094 35.829 118.217 37.9485 121.103 37.9485Z" fill="#1A2126"/><path d="M110.032 41.0945H106.35V18.2443H110.032V41.0945Z" fill="#1A2126"/><path d="M100.332 22.0858C99.1048 22.0858 98.2092 21.1916 98.2092 19.9994C98.2092 18.7741 99.1048 17.88 100.332 17.88C101.559 17.88 102.455 18.7741 102.455 19.9994C102.455 21.1916 101.559 22.0858 100.332 22.0858ZM102.156 41.0945H98.4746V24.6688H102.156V41.0945Z" fill="#1A2126"/><path d="M69.3105 41.4256C66.9887 41.4256 65.0317 40.4984 63.8044 38.9088V41.0945H60.2885V18.2442H63.9703V26.6558C65.1975 25.1987 67.0882 24.3376 69.3105 24.3376C74.0206 24.3376 77.6029 28.0798 77.6029 32.8816C77.6029 37.6835 74.0206 41.4256 69.3105 41.4256ZM68.9125 37.9484C71.7982 37.9484 73.9211 35.829 73.9211 32.8816C73.9211 29.9012 71.7982 27.7817 68.9125 27.7817C66.0268 27.7817 63.9371 29.9012 63.9371 32.8816C63.9371 35.829 66.0268 37.9484 68.9125 37.9484Z" fill="#1A2126"/><path d="M80.0009 34.0075V24.6688H83.6831V33.6763C83.6831 36.3591 85.1096 37.9479 87.464 37.9479C89.8185 37.9479 91.4108 36.2921 91.4108 33.6763V24.6688H95.093V41.0949H91.5105V39.5051C90.4493 40.7302 88.8234 41.4261 86.8333 41.4261C82.8529 41.4261 80 38.5451 80 34.0084L80.0009 34.0075Z" fill="#1A2126"/><path d="M98.0237 4.89975C98.7076 4.43162 99.5134 4.17543 100.342 4.16161C103.098 4.16161 105.014 6.0406 105.014 8.82545V14.1316H102.497V9.06228C102.497 7.51781 101.557 6.61195 100.279 6.61195C98.9014 6.61195 98.0606 7.58968 98.0606 9.06228V14.1288H95.5325V1.44403L98.0246 0L98.0237 4.89975Z" fill="#1A2126"/><path d="M64.4174 8.09768C64.5863 8.13823 64.7644 8.1797 64.9472 8.22578C66.7959 8.69483 68.2081 9.33253 68.2091 11.1793C68.2091 13.0924 66.3271 14.4 63.9734 14.4C62.024 14.3972 60.5445 13.8618 59.603 12.3174L61.8228 11.0429C62.2594 11.9156 62.9978 12.3524 64.0408 12.3505C65.0192 12.3505 65.621 11.9146 65.621 11.2769C65.621 10.6393 64.782 10.4393 63.3347 10.1361C61.3512 9.6993 60.0746 8.8948 60.0746 7.21671C60.0746 5.4013 61.9234 4.16185 63.9734 4.16185C65.7216 4.16185 66.9307 4.63275 68.006 5.97725L65.8886 7.1863C65.4862 6.4887 64.8798 6.14589 64.0066 6.14589C63.1335 6.14589 62.5954 6.5486 62.5954 7.08585C62.5954 7.66457 63.3476 7.84242 64.4174 8.09768Z" fill="#1A2126"/><path d="M69.5528 14.1318L72.0403 14.1291V4.16185L69.5528 5.61509V14.1318Z" fill="#1A2126"/><path d="M78.5284 4.16185C75.7714 4.16185 73.7887 6.2104 73.7887 8.89573V14.1328L76.3132 14.13V9.06345C76.3132 7.59085 77.154 6.61311 78.533 6.61311C79.8095 6.61311 80.751 7.51897 80.751 9.06345V14.13H83.2689V8.89573C83.2689 6.34402 81.3251 4.16185 78.5284 4.16185Z" fill="#1A2126"/><path d="M87.1583 9.26307C87.1583 10.8076 88.2004 11.9816 89.7473 11.9816C90.7562 11.9816 91.6293 11.4775 92.0327 10.6389L94.1833 11.882C93.7402 12.6552 93.0988 13.2957 92.3253 13.7371C91.5509 14.1785 90.6731 14.4061 89.7815 14.3951C86.7965 14.3978 84.6071 12.2497 84.6071 9.264C84.6071 6.27825 86.7577 4.16243 89.7815 4.16243C91.6626 4.16243 93.3433 5.13925 94.1491 6.64594L91.9985 7.92225C91.7872 7.50941 91.4641 7.16568 91.0663 6.92793C90.6676 6.69018 90.2107 6.56945 89.7473 6.57867C88.2678 6.57867 87.1583 7.68542 87.1583 9.26307Z" fill="#1A2126"/><path d="M0 9.6C0 4.29846 4.30535 0 9.61538 0H38.4615C43.7716 0 48.0769 4.29846 48.0769 9.6V38.4C48.0769 43.7015 43.7716 48 38.4615 48H9.61538C4.30535 48 0 43.7015 0 38.4V9.6Z" fill="#FADA5A"/><path d="M41.4543 20.9724C40.625 19.7954 39.4702 18.9129 38.1171 18.4234C37.2468 18.0985 36.3345 17.9381 35.4055 17.9476C33.7878 17.958 32.0724 18.4643 30.4484 19.4128L16.0128 27.85C13.7663 29.1622 12.0961 28.9862 11.0852 28.6047C10.343 28.3405 9.71205 27.8616 9.25749 27.2212C8.80189 26.5797 8.55834 25.8261 8.55519 25.0411C8.55099 24.255 8.78404 23.4983 9.2323 22.8527C9.67951 22.206 10.3062 21.7207 11.0495 21.4451C12.051 21.0541 13.718 20.8581 15.9792 22.1421L17.6054 23.0707C17.5109 23.3966 17.4405 23.732 17.3965 24.0674L17.3125 24.7026L29.6275 17.6048L29.6527 17.5891C29.9823 17.3564 30.2101 17.0105 30.2951 16.6175C30.3802 16.2234 30.3151 15.8147 30.1104 15.4677C29.9067 15.1208 29.5813 14.864 29.1939 14.7456C28.8076 14.6272 28.395 14.6576 28.0307 14.8315L28.0192 14.8368L24.0332 17.1479L19.9726 14.8294L19.9495 14.8179C19.581 14.646 19.1653 14.6198 18.779 14.7435C18.3927 14.8672 18.0694 15.1292 17.8689 15.4824C17.6683 15.8356 17.6096 16.2475 17.704 16.6416C17.7975 17.0357 18.0347 17.3784 18.3717 17.6048L20.8492 19.0061L20.5091 19.2063L20.5017 19.2105C20.0199 19.5155 19.5789 19.8803 19.1884 20.2943L17.5623 19.3583C14.941 17.8679 12.2105 17.5482 9.87581 18.459C8.90267 18.8342 8.0072 19.4306 7.28705 20.1852C6.5669 20.9388 6.01157 21.8601 5.68194 22.8516C5.12345 24.5894 5.25572 26.4498 6.05776 28.09C6.85979 29.7303 8.24655 30.9807 9.96085 31.6096C10.8322 31.9345 11.7465 32.0948 12.6735 32.0854C14.2901 32.0749 16.0044 31.5676 17.6306 30.6181L17.6557 30.6023L32.0588 22.1819C34.3042 20.8707 35.9755 21.0468 36.9885 21.4273C37.7297 21.6903 38.3616 22.1672 38.8173 22.8076C39.2718 23.449 39.5122 24.2037 39.5143 24.9898C39.5154 25.4038 39.4524 25.8146 39.3285 26.2035C39.1458 26.7422 38.8414 27.2442 38.4456 27.653C38.0509 28.0628 37.5607 28.3867 37.0263 28.59C36.0248 28.9799 34.3557 29.1748 32.0945 27.8919L30.4683 26.9633C30.5723 26.607 30.6458 26.2422 30.6898 25.8754L30.7654 25.2455L21.1736 30.8528V34.5589L27.5667 30.8319L27.5772 30.8256C28.057 30.5206 28.4979 30.1559 28.8874 29.7419L30.5145 30.6778C33.1463 32.163 35.8768 32.4816 38.1979 31.5771C39.5479 31.0708 40.6911 30.1758 41.5068 28.9883C42.3214 27.8018 42.7455 26.4131 42.7329 24.9751H42.735C42.7266 23.5339 42.2857 22.1504 41.4564 20.9734L41.4543 20.9724Z" fill="#1A2126"/></g>
+<g id="logo-build"><path d="M67.6689 16.2676C70.62 16.2676 72.6617 17.0626 74.4775 19.334L70.9023 21.377C70.2228 20.1979 69.1998 19.6201 67.7246 19.6201C66.1928 19.6202 65.3431 20.2993 65.3428 21.207C65.3428 22.1848 66.6119 22.4877 68.4189 22.918C68.7048 22.986 69.0046 23.0571 69.3145 23.1348C72.436 23.9277 74.8203 25.0054 74.8213 28.124C74.8211 31.3556 71.6431 33.5653 67.6699 33.5654C64.3789 33.5607 61.8814 32.6549 60.292 30.0459L64.0391 27.8926C64.7757 29.3673 66.0235 30.1044 67.7832 30.1025C69.4352 30.1024 70.4502 29.3662 70.4502 28.2881C70.4501 27.21 69.0335 26.8728 66.5908 26.3613C63.2427 25.6235 61.0869 24.264 61.0869 21.4287C61.0871 18.3625 64.2077 16.2676 67.6689 16.2676Z" fill="#1A2126"/><path d="M111.24 16.2705C114.417 16.2706 117.253 17.9215 118.615 20.4668L114.984 22.6221C114.627 21.9251 114.082 21.3427 113.41 20.9414C112.737 20.5402 111.965 20.3364 111.183 20.3525C108.685 20.3527 106.812 22.2227 106.812 24.8877C106.813 27.4966 108.571 29.4803 111.183 29.4805C112.885 29.4805 114.361 28.6286 115.041 27.2119L118.672 29.3115C117.924 30.6169 116.841 31.6989 115.534 32.4453C114.228 33.1917 112.746 33.5766 111.24 33.5576C106.202 33.5624 102.505 29.9337 102.505 24.8887C102.505 19.8437 106.136 16.2705 111.24 16.2705Z" fill="#1A2126"/><path fill-rule="evenodd" clip-rule="evenodd" d="M148.803 18.6162C150.029 17.1591 151.919 16.2979 154.14 16.2979C158.847 16.298 162.427 20.04 162.427 24.8418C162.427 29.6435 158.846 33.3856 154.14 33.3857C151.819 33.3857 149.863 32.4586 148.637 30.8691V33.0547H145.123V10.2041H148.803V18.6162ZM153.741 19.7422C150.858 19.7424 148.77 21.8615 148.77 24.8418C148.77 27.7889 150.858 29.908 153.741 29.9082C156.625 29.9082 158.747 27.7891 158.747 24.8418C158.747 21.8613 156.625 19.7422 153.741 19.7422Z" fill="#1A2126"/><path d="M168.503 25.6367C168.503 28.3192 169.928 29.9082 172.281 29.9082C174.634 29.9082 176.225 28.2523 176.226 25.6367V16.6289H179.905V33.0547H176.325V31.4648C175.265 32.69 173.639 33.3857 171.65 33.3857C167.673 33.3855 164.822 30.5051 164.822 25.9688L164.823 25.9678V16.6289H168.503V25.6367Z" fill="#1A2126"/><path fill-rule="evenodd" clip-rule="evenodd" d="M214.517 33.0547H211.003V30.8691C209.81 32.4584 207.821 33.3857 205.501 33.3857C200.794 33.3857 197.214 29.6436 197.214 24.8418C197.214 20.0399 200.794 16.2979 205.501 16.2979C207.722 16.2979 209.611 17.1592 210.838 18.6494V10.2041H214.517V33.0547ZM205.898 19.7422C203.015 19.7422 200.894 21.8945 200.894 24.8418C200.894 27.789 203.015 29.9081 205.898 29.9082C208.782 29.9082 210.871 27.7891 210.871 24.8418C210.871 21.8944 208.782 19.7422 205.898 19.7422Z" fill="#1A2126"/><path d="M92.2412 16.2695C96.9634 16.2697 100.243 19.9557 100.243 24.2656V33.1084H95.9922V24.5488C95.9921 21.9402 94.4043 20.4094 92.249 20.4092C89.9212 20.4092 88.5021 22.0607 88.502 24.5488V33.1084L84.2402 33.1133V24.2656C84.2403 19.7294 87.5874 16.2695 92.2412 16.2695Z" fill="#1A2126"/><path d="M81.2891 33.1074L77.0889 33.1123V18.7246L81.2891 16.2695V33.1074Z" fill="#1A2126"/><path d="M125.155 17.5166C126.309 16.7266 127.67 16.2933 129.069 16.2695C133.722 16.2695 136.957 19.444 136.957 24.1484V33.1123H132.707V24.5479C132.707 21.939 131.118 20.4082 128.963 20.4082C126.635 20.4082 125.216 22.0597 125.216 24.5479V33.1074H120.947V11.6787L125.155 9.24023V17.5166Z" fill="#1A2126"/><path d="M186.964 33.0547H183.285V16.6289H186.964V33.0547Z" fill="#1A2126"/><path d="M194.835 33.0547H191.155V10.2041H194.835V33.0547Z" fill="#1A2126"/><path d="M185.141 9.83984C186.367 9.83984 187.262 10.7339 187.263 11.959C187.263 13.1512 186.367 14.0459 185.141 14.0459C183.914 14.0457 183.02 13.1511 183.02 11.959C183.02 10.734 183.914 9.84001 185.141 9.83984Z" fill="#1A2126"/><path d="M0 9.6C0 4.29846 4.30535 0 9.61538 0H38.4615C43.7716 0 48.0769 4.29846 48.0769 9.6V38.4C48.0769 43.7015 43.7716 48 38.4615 48H9.61538C4.30535 48 0 43.7015 0 38.4V9.6Z" fill="#FADA5A"/><path d="M41.4543 20.9724C40.625 19.7954 39.4702 18.9129 38.1171 18.4234C37.2468 18.0985 36.3345 17.9381 35.4055 17.9476C33.7878 17.958 32.0724 18.4643 30.4484 19.4128L16.0128 27.85C13.7663 29.1622 12.0961 28.9862 11.0852 28.6047C10.343 28.3405 9.71205 27.8616 9.25749 27.2212C8.80189 26.5797 8.55834 25.8261 8.55519 25.0411C8.55099 24.255 8.78404 23.4983 9.2323 22.8527C9.67951 22.206 10.3062 21.7207 11.0495 21.4451C12.051 21.0541 13.718 20.8581 15.9792 22.1421L17.6054 23.0707C17.5109 23.3966 17.4405 23.732 17.3965 24.0674L17.3125 24.7026L29.6275 17.6048L29.6527 17.5891C29.9823 17.3564 30.2101 17.0105 30.2951 16.6175C30.3802 16.2234 30.3151 15.8147 30.1104 15.4677C29.9067 15.1208 29.5813 14.864 29.1939 14.7456C28.8076 14.6272 28.395 14.6576 28.0307 14.8315L28.0192 14.8368L24.0332 17.1479L19.9726 14.8294L19.9495 14.8179C19.581 14.646 19.1653 14.6198 18.779 14.7435C18.3927 14.8672 18.0694 15.1292 17.8689 15.4824C17.6683 15.8356 17.6096 16.2475 17.704 16.6416C17.7975 17.0357 18.0347 17.3784 18.3717 17.6048L20.8492 19.0061L20.5091 19.2063L20.5017 19.2105C20.0199 19.5155 19.5789 19.8803 19.1884 20.2943L17.5623 19.3583C14.941 17.8679 12.2105 17.5482 9.87581 18.459C8.90267 18.8342 8.0072 19.4306 7.28705 20.1852C6.5669 20.9388 6.01157 21.8601 5.68194 22.8516C5.12345 24.5894 5.25572 26.4498 6.05776 28.09C6.85979 29.7303 8.24655 30.9807 9.96085 31.6096C10.8322 31.9345 11.7465 32.0948 12.6735 32.0854C14.2901 32.0749 16.0044 31.5676 17.6306 30.6181L17.6557 30.6023L32.0588 22.1819C34.3042 20.8707 35.9755 21.0468 36.9885 21.4273C37.7297 21.6903 38.3616 22.1672 38.8173 22.8076C39.2718 23.449 39.5122 24.2037 39.5143 24.9898C39.5154 25.4038 39.4524 25.8146 39.3285 26.2035C39.1458 26.7422 38.8414 27.2442 38.4456 27.653C38.0509 28.0628 37.5607 28.3867 37.0263 28.59C36.0248 28.9799 34.3557 29.1748 32.0945 27.8919L30.4683 26.9633C30.5723 26.607 30.6458 26.2422 30.6898 25.8754L30.7654 25.2455L21.1736 30.8528V34.5589L27.5667 30.8319L27.5772 30.8256C28.057 30.5206 28.4979 30.1559 28.8874 29.7419L30.5145 30.6778C33.1463 32.163 35.8768 32.4816 38.1979 31.5771C39.5479 31.0708 40.6911 30.1758 41.5068 28.9883C42.3214 27.8018 42.7455 26.4131 42.7329 24.9751H42.735C42.7266 23.5339 42.2857 22.1504 41.4564 20.9734L41.4543 20.9724Z" fill="#1A2126"/></g>
 <g id="tile-engage"><path d="M0 9.6C0 4.29846 4.30884 0 9.62319 0H38.4927C43.8071 0 48.1159 4.29846 48.1159 9.6V38.4C48.1159 43.7015 43.8071 48 38.4927 48H9.62319C4.30884 48 0 43.7015 0 38.4V9.6Z" fill="#7FC7AF"/><path d="M41.4879 20.9724C40.6579 19.7954 39.5023 18.9129 38.148 18.4234C37.277 18.0985 36.364 17.9381 35.4342 17.9476C33.8152 17.958 32.0984 18.4643 30.4731 19.4128L16.0258 27.85C13.7775 29.1622 12.1059 28.9862 11.0942 28.6047C10.3514 28.3405 9.71993 27.8616 9.26501 27.2212C8.80903 26.5797 8.56528 25.8261 8.56213 25.0411C8.55793 24.255 8.79117 23.4983 9.23979 22.8527C9.68736 22.206 10.3146 21.7207 11.0584 21.4451C12.0607 21.0541 13.7291 20.8581 15.9922 22.1421L17.6196 23.0707C17.5251 23.3966 17.4547 23.732 17.4106 24.0674L17.3265 24.7026L29.6515 17.6048L29.6767 17.5891C30.0066 17.3564 30.2346 17.0105 30.3197 16.6175C30.4048 16.2234 30.3397 15.8147 30.1348 15.4677C29.931 15.1208 29.6053 14.864 29.2176 14.7456C28.831 14.6272 28.4181 14.6576 28.0535 14.8315L28.0419 14.8368L24.0527 17.1479L19.9888 14.8294L19.9657 14.8179C19.5969 14.646 19.1809 14.6198 18.7943 14.7435C18.4076 14.8672 18.084 15.1292 17.8834 15.4824C17.6827 15.8356 17.6239 16.2475 17.7184 16.6416C17.8119 17.0357 18.0494 17.3784 18.3866 17.6048L20.8661 19.0061L20.5257 19.2063L20.5183 19.2105C20.0361 19.5155 19.5948 19.8803 19.204 20.2943L17.5766 19.3583C14.9531 17.8679 12.2204 17.5482 9.88383 18.459C8.90989 18.8342 8.0137 19.4306 7.29297 20.1852C6.57223 20.9388 6.01645 21.8601 5.68655 22.8516C5.12761 24.5894 5.25999 26.4498 6.06267 28.09C6.86536 29.7303 8.25325 30.9807 9.96893 31.6096C10.841 31.9345 11.7561 32.0948 12.6838 32.0854C14.3017 32.0749 16.0174 31.5676 17.6449 30.6181L17.6701 30.6023L32.0848 22.1819C34.3321 20.8707 36.0047 21.0468 37.0186 21.4272C37.7603 21.6903 38.3928 22.1672 38.8488 22.8076C39.3037 23.449 39.5443 24.2037 39.5464 24.9897C39.5474 25.4037 39.4844 25.8146 39.3604 26.2035C39.1776 26.7422 38.8729 27.2442 38.4768 27.653C38.0818 28.0628 37.5911 28.3867 37.0564 28.59C36.0541 28.9799 34.3836 29.1748 32.1205 27.8919L30.4931 26.9633C30.5971 26.607 30.6706 26.2422 30.7148 25.8754L30.7904 25.2455L21.1908 30.8528V34.5589L27.5891 30.8319L27.5996 30.8256C28.0798 30.5206 28.521 30.1559 28.9108 29.7419L30.5393 30.6778C33.1732 32.163 35.9059 32.4816 38.2289 31.5771C39.58 31.0708 40.7241 30.1758 41.5405 28.9883C42.3558 27.8018 42.7802 26.4131 42.7676 24.9751H42.7697C42.7613 23.5339 42.32 22.1504 41.4901 20.9734L41.4879 20.9724Z" fill="#1A2126"/></g>
 <g id="tile-mailgun"><path d="M0 9.6C0 4.29846 4.29846 0 9.6 0H38.4C43.7015 0 48 4.29846 48 9.6V38.4C48 43.7015 43.7015 48 38.4 48H9.6C4.29846 48 0 43.7015 0 38.4V9.6Z" fill="#F04126"/><path d="M41.388 20.9724C40.56 19.7954 39.4071 18.9129 38.0561 18.4234C37.1872 18.0985 36.2764 17.9381 35.3488 17.9476C33.7337 17.958 32.0211 18.4643 30.3997 19.4128L15.9872 27.85C13.7443 29.1622 12.0767 28.9862 11.0674 28.6047C10.3264 28.3405 9.69651 27.8616 9.24268 27.2212C8.7878 26.5797 8.54464 25.8261 8.5415 25.0411C8.53731 24.255 8.76999 23.4983 9.21753 22.8527C9.66402 22.206 10.2897 21.7207 11.0318 21.4451C12.0317 21.0541 13.6961 20.8581 15.9537 22.1421L17.5772 23.0707C17.4829 23.3966 17.4126 23.732 17.3686 24.0674L17.2848 24.7026L29.5801 17.6048L29.6052 17.5891C29.9343 17.3564 30.1618 17.0105 30.2467 16.6175C30.3315 16.2234 30.2666 15.8147 30.0622 15.4677C29.8589 15.1208 29.5339 14.864 29.1472 14.7456C28.7615 14.6272 28.3496 14.6576 27.9859 14.8315L27.9744 14.8368L23.9947 17.1479L19.9407 14.8294L19.9176 14.8179C19.5497 14.646 19.1347 14.6198 18.749 14.7435C18.3633 14.8672 18.0405 15.1292 17.8403 15.4824C17.6401 15.8356 17.5814 16.2475 17.6757 16.6416C17.769 17.0357 18.0059 17.3784 18.3423 17.6048L20.8158 19.0061L20.4762 19.2063L20.4689 19.2105C19.9878 19.5155 19.5476 19.8803 19.1577 20.2943L17.5342 19.3583C14.9171 17.8679 12.191 17.5482 9.86001 18.459C8.88842 18.8342 7.99439 19.4306 7.27539 20.1853C6.55639 20.9388 6.00195 21.8601 5.67284 22.8516C5.11525 24.5894 5.24731 26.4498 6.04806 28.09C6.84881 29.7303 8.23336 30.9807 9.94491 31.6096C10.8148 31.9345 11.7277 32.0948 12.6532 32.0854C14.2673 32.0749 15.9788 31.5676 17.6023 30.6181L17.6275 30.6023L32.0075 22.1819C34.2494 20.8707 35.9179 21.0468 36.9294 21.4273C37.6693 21.6903 38.3003 22.1672 38.7551 22.8076C39.209 23.449 39.449 24.2037 39.4511 24.9898C39.4521 25.4038 39.3892 25.8146 39.2656 26.2035C39.0832 26.7422 38.7793 27.2442 38.3841 27.653C37.99 28.0628 37.5006 28.3867 36.9671 28.59C35.9672 28.9799 34.3007 29.1748 32.0431 27.8919L30.4196 26.9633C30.5233 26.607 30.5967 26.2422 30.6407 25.8754L30.7162 25.2455L21.1397 30.8528V34.5589L27.5226 30.8319L27.5331 30.8256C28.0121 30.5206 28.4523 30.1559 28.8411 29.7419L30.4657 30.6778C33.0933 32.163 35.8194 32.4816 38.1368 31.5771C39.4846 31.0708 40.626 30.1758 41.4404 28.9883C42.2537 27.8018 42.6771 26.4131 42.6646 24.9751H42.6667C42.6583 23.5339 42.2181 22.1504 41.3901 20.9734L41.388 20.9724Z" fill="#fff"/></g>
 </defs></svg>
 
 <main>
   <div class="form">
-    <div class="head">
-      <svg class="logo" viewBox="0 0 130 48" role="img" aria-label="Sinch Build"><use href="#logo-build"/></svg>
+    <svg class="logo" width="215" height="48" viewBox="0 0 215 48" role="img" aria-label="Sinch Build"><use href="#logo-build"/></svg>
+
+    <div class="top">
       <h1>Create a Sinch Build account</h1>
       <p class="sub">Set up your Build account using your Sinch&nbsp;ID.</p>
-    </div>
 
-    <div class="id-wrap">
-      <div class="id-card">
-        <div class="avatar" aria-hidden="true">AM</div>
-        <div class="id-text">
-          <span class="id-label">Signed in with your Sinch&nbsp;ID</span>
-          <span class="id-email">alex.morgan@company.com</span>
+      <div class="id-wrap">
+        <div class="id-card">
+          <div class="avatar" aria-hidden="true">AM</div>
+          <div class="id-text">
+            <span class="id-label">Signed in with your Sinch&nbsp;ID</span>
+            <span class="id-email">alex.morgan@company.com</span>
+          </div>
         </div>
+        <button type="button" class="alt-link" data-toast="Prototype: this would sign you out so you can use a different email.">Use a different email</button>
       </div>
-      <button type="button" class="alt-link" data-toast="Prototype: this would sign you out so you can use a different email.">Use a different email</button>
-    </div>
 
-    <label class="check">
-      <input type="checkbox" id="confirm" aria-describedby="confirm-error">
-      <span>I understand this will create a new Sinch Build account&nbsp;*</span>
-    </label>
-    <p class="error" id="confirm-error" role="alert" hidden>Confirm that you want to create a new Sinch Build account.</p>
+      <div class="confirm">
+        <label class="check">
+          <input type="checkbox" id="confirm">
+          <span>I understand this will create a new Sinch Build account&nbsp;*</span>
+        </label>
+      </div>
+    </div>
 
     <button type="button" class="cta" id="create">Create Sinch Build account</button>
 
@@ -183,7 +198,7 @@ footer.site a:hover{text-decoration:underline}
     <hr class="divider" id="accounts-divider">
 
     <section class="accounts" id="accounts" aria-labelledby="accounts-title">
-      <h2 id="accounts-title">You have existing accounts linked to this Sinch&nbsp;ID</h2>
+      <h2 id="accounts-title"><span class="t-many">You have existing accounts linked to this Sinch&nbsp;ID</span><span class="t-one">You have an existing account linked to this Sinch&nbsp;ID</span></h2>
       <ul>
         <li class="acc" id="acc-engage">
           <div class="avatar" aria-hidden="true">AM<span class="badge"><svg viewBox="0 0 48 48"><use href="#tile-engage"/></svg></span></div>
@@ -207,17 +222,9 @@ footer.site a:hover{text-decoration:underline}
 </main>
 
 <footer class="site">
-  <span>&copy; Sinch</span><span aria-hidden="true">&bull;</span><a href="#">Support</a>
+  <span><span class="reg">&copy; </span><a href="#">Sinch</a></span>
+  <span><span class="reg">&bull; </span><a href="#">Support</a></span>
 </footer>
-
-<div class="proto" role="group" aria-label="Prototype controls">
-  <span>Detected accounts</span>
-  <div class="seg">
-    <button type="button" data-state="both" aria-pressed="true">Engage + Mailgun</button>
-    <button type="button" data-state="engage" aria-pressed="false">Engage only</button>
-    <button type="button" data-state="none" aria-pressed="false">None</button>
-  </div>
-</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -237,40 +244,22 @@ footer.site a:hover{text-decoration:underline}
   });
 
   var box = document.getElementById('confirm');
-  var err = document.getElementById('confirm-error');
+  function setError(on) {
+    if (on) { box.setAttribute('aria-invalid', 'true'); }
+    else { box.removeAttribute('aria-invalid'); }
+  }
   document.getElementById('create').addEventListener('click', function () {
     if (!box.checked) {
-      err.hidden = false;
+      setError(true);
       box.focus();
+      if (box.scrollIntoView) box.scrollIntoView({block: 'center', behavior: 'smooth'});
       return;
     }
-    err.hidden = true;
+    setError(false);
     showToast('Prototype: a new Sinch Build account would be created.');
   });
-  box.addEventListener('change', function () { if (box.checked) err.hidden = true; });
+  box.addEventListener('change', function () { if (box.checked) setError(false); });
 
-  var accounts = document.getElementById('accounts');
-  var divider = document.getElementById('accounts-divider');
-  var title = document.getElementById('accounts-title');
-  var mailgun = document.getElementById('acc-mailgun');
-  var buttons = document.querySelectorAll('.seg button');
-
-  function setState(state) {
-    var none = state === 'none';
-    accounts.hidden = none;
-    divider.hidden = none;
-    mailgun.hidden = state !== 'both';
-    title.innerHTML = state === 'both'
-      ? 'You have existing accounts linked to this Sinch&nbsp;ID'
-      : 'You have an existing account linked to this Sinch&nbsp;ID';
-    buttons.forEach(function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-state') === state ? 'true' : 'false');
-    });
-  }
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () { setState(b.getAttribute('data-state')); });
-  });
-  setState('both');
 })();
 </script>
 </body>
